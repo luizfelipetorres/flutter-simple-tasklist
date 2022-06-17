@@ -18,4 +18,4 @@ App criado para treinar o desenvolvimento com a framework Flutter e a linguagem 
 - [ ] Tour pelo app (help)   
  
 ## :tv: Demonstração :tv:
-![demo](./demo.gif)
+<img src="./demo.gif" height=600>
