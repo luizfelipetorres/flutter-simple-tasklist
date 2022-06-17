@@ -2,6 +2,8 @@
 
 > :construction: Projeto em construção :construction:
 
+## :newspaper: Descrição :newspaper:
+
 App criado para treinar o desenvolvimento com a framework Flutter e a linguagem Dart.
 
 ## :hammer: Funcionalidades: :hammer:
@@ -15,5 +17,5 @@ App criado para treinar o desenvolvimento com a framework Flutter e a linguagem 
 - [ ] Área de login 
 - [ ] Tour pelo app (help)   
  
-##  Demonstração
+## :tv: Demonstração :tv:
 ![demo](./demo.gif)
