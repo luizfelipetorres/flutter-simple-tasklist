@@ -1,25 +1,31 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:lista_simples/controller/app_controller.dart';
 import 'package:lista_simples/pages/config_page.dart';
-
-import 'package:lista_simples/pages/home_page.dart';
 import 'package:lista_simples/pages/sobre_page.dart';
 
-class NavigationDrawer extends StatelessWidget {
-  NavigationDrawer({Key? key}) : super(key: key);
+class NavigationDrawer extends StatefulWidget {
+  const NavigationDrawer({Key? key}) : super(key: key);
 
-  final padding = EdgeInsets.symmetric(horizontal: 20);
+  @override
+  State<NavigationDrawer> createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
+  get padding => EdgeInsets.symmetric(horizontal: 20);
+  get name => "Username";
+  get email => "user@mail.com";
+  get img => "";
+  get textColor => Colors.white;
+  get hoverColor => Color.fromARGB(69, 255, 255, 255);
 
   @override
   Widget build(BuildContext context) {
-    const name = "Username";
-    const email = "user@mail.com";
-    const img = "";
-
     return Drawer(
       child: Material(
-        color: Color.fromARGB(255, 200, 0, 0),
+        color: AppController.instance.isDarkMode
+            ? Colors.black45
+            : Color.fromARGB(255, 200, 0, 0),
         child: ListView(
           padding: padding,
           children: <Widget>[
@@ -44,22 +50,32 @@ class NavigationDrawer extends StatelessWidget {
                 text: "Sair",
                 icon: Icons.exit_to_app,
                 onClick: () => selectedItem(context, 3)),
+            buildSwitchDarkMode(),
           ],
         ),
       ),
     );
   }
 
+  buildSwitchDarkMode() => SwitchListTile(
+        title: Text(
+          "Darkmode: ",
+          style: TextStyle(color: textColor),
+        ),
+        value: AppController.instance.isDarkMode,
+        onChanged: (valor) {
+          AppController.instance.changeTema();
+        },
+        hoverColor: hoverColor,
+      );
+
   buildMenuItem(
       {required String text, required IconData icon, VoidCallback? onClick}) {
-    const color = Colors.white;
-    const hoverColor = Color.fromARGB(69, 255, 255, 255);
-
     return ListTile(
-      leading: Icon(icon, color: color),
+      leading: Icon(icon, color: textColor),
       title: Text(
         text,
-        style: TextStyle(color: color),
+        style: TextStyle(color: textColor),
       ),
       hoverColor: hoverColor,
       onTap: onClick,
