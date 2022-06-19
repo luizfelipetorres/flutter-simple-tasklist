@@ -12,6 +12,7 @@ App criado para treinar o desenvolvimento com a framework Flutter e a linguagem 
 - [x] Remover todos os itens (FloatingActionButton)
 - [x] Menu Drawer
 - [x] Switch com Darkmode
+- [x] Alterar tema do app
 - [x] Navegar entre páginas
 - [ ] Consumir uma API
 - [ ] Armazenas itens do checklist no localstorage

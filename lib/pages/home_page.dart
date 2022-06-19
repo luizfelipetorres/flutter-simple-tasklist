@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_simples/controller/app_controller.dart';
 import 'package:lista_simples/widgets/navigation_drawer.dart';
 
 import '../interfaces/item.dart';
@@ -70,26 +71,28 @@ class _HomePageState extends State<HomePage> {
     return Row(
       children: [
         Expanded(
-            child: TextField(
-          focusNode: textFieldFocus,
-          textInputAction: TextInputAction.go,
-          textCapitalization: TextCapitalization.sentences,
-          autocorrect: true,
-          enableSuggestions: true,
-          onSubmitted: (texto) {
-            final text = texto;
-            setState(() {
-              itensList.add(Item(text, false));
-              textFieldFocus.requestFocus();
-            });
-            controller.clear();
-            FocusScope.of(context).requestFocus();
-          },
-          decoration: InputDecoration(
+          child: TextField(
+            focusNode: textFieldFocus,
+            textInputAction: TextInputAction.go,
+            textCapitalization: TextCapitalization.sentences,
+            autocorrect: true,
+            enableSuggestions: true,
+            onSubmitted: (texto) {
+              final text = texto;
+              setState(() {
+                itensList.add(Item(text, false));
+                textFieldFocus.requestFocus();
+              });
+              controller.clear();
+              FocusScope.of(context).requestFocus();
+            },
+            decoration: InputDecoration(
               labelText: "Insira um item...",
-              contentPadding: EdgeInsets.all(10)),
-          controller: controller,
-        )),
+              contentPadding: EdgeInsets.all(10),
+            ),
+            controller: controller,
+          ),
+        ),
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () {

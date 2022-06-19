@@ -25,7 +25,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       child: Material(
         color: AppController.instance.isDarkMode
             ? Colors.black45
-            : Color.fromARGB(255, 200, 0, 0),
+            : AppController.instance.appColor,
         child: ListView(
           children: <Widget>[
             buildHeader(name: name, email: email, img: img),
@@ -39,10 +39,14 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 text: "Sobre",
                 icon: Icons.help,
                 onClick: () => selectedItem(context, 1)),
+            const SizedBox(height: 10),
+            buildMenuItem(
+                text: "Configurações",
+                icon: Icons.settings,
+                onClick: () => selectedItem(context, 2)),
             const SizedBox(height: 5),
             Divider(color: Colors.white),
             const SizedBox(height: 5),
-            const SizedBox(height: 10),
             buildMenuItem(
                 text: "Sair",
                 icon: Icons.exit_to_app,
@@ -89,15 +93,11 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         break;
 
       case 1:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SobrePage(),
-        ));
+        Navigator.of(context).pushNamed('/sobre');
         break;
 
       case 2:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ConfigPage(),
-        ));
+        Navigator.of(context).pushNamed('/config');
         break;
 
       case 3:

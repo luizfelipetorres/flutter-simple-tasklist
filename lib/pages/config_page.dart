@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lista_simples/controller/app_controller.dart';
 
 class ConfigPage extends StatefulWidget {
   const ConfigPage({Key? key}) : super(key: key);
@@ -17,9 +18,27 @@ class _ConfigPageState extends State<ConfigPage> {
       body: Material(
         child: ListView(
           children: [
-            buildConfigButton(
-                "Alterar cor principal", "Escolha a cor do aplicativo"),
-            buildConfigButton("Opção 2", "Descrição 2"),
+            SizedBox(height: 20),
+            ListTile(
+              title: Text("Cor do app: "),
+              subtitle: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  isExpanded: false,
+                  disabledHint: Text("Escolha a cor: "),
+                  hint: Text("Escolha a cor do app"),
+                  value: AppController.instance.appColorString,
+                  iconEnabledColor: AppController.instance.appColor,
+                  items: AppController.instance.appColors.keys
+                      .map((e) =>
+                          DropdownMenuItem<String>(child: Text(e), value: e))
+                      .toList(),
+                  onChanged: (String? valor) {
+                    AppController.instance.appColors =
+                        AppController.instance.changeColor(valor!);
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
