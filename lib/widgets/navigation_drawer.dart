@@ -54,6 +54,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     );
   }
 
+  ///"Construtor" do switch de darkmode
   buildSwitchDarkMode() => SwitchListTile(
         title: Text(
           "Darkmode: ",
@@ -66,6 +67,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         hoverColor: hoverColor,
       );
 
+  ///"Construtor" do item de menu
   buildMenuItem(
       {required String text, required IconData icon, VoidCallback? onClick}) {
     return ListTile(
@@ -79,6 +81,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     );
   }
 
+  ///Função de click nos itens do drawer
   void selectedItem(BuildContext context, int i) {
     Navigator.of(context).pop();
     switch (i) {
@@ -105,6 +108,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     }
   }
 
+  ///Constroi o header com informações do usuário
   buildHeader(
       {required String name, required String email, required String img}) {
     return UserAccountsDrawerHeader(
@@ -118,6 +122,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           size: 40,
         ),
       ),
+      onDetailsPressed: () {},
+      otherAccountsPictures: [
+        CircleAvatar(child: Icon(Icons.person_add_alt_1_outlined))
+      ],
     );
   }
 }
