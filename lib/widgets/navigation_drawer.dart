@@ -16,7 +16,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   get name => "Username";
   get email => "user@mail.com";
   get img => "";
-  get textColor => Colors.white;
+  get textColor => AppController.instance.appColor == Colors.yellow &&
+          AppController.instance.isDarkMode == false
+      ? Colors.black87
+      : Colors.white;
   get hoverColor => Color.fromARGB(69, 255, 255, 255);
 
   @override
@@ -45,7 +48,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 icon: Icons.settings,
                 onClick: () => selectedItem(context, 2)),
             const SizedBox(height: 5),
-            Divider(color: Colors.white),
+            Divider(color: textColor),
             const SizedBox(height: 5),
             buildMenuItem(
                 text: "Sair",
@@ -110,22 +113,22 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   ///Constroi o header com informações do usuário
   buildHeader(
-      {required String name, required String email, required String img}) {
-    return UserAccountsDrawerHeader(
-      accountEmail: Text(name),
-      accountName: Text(email),
-      currentAccountPicture: CircleAvatar(
-        radius: 30,
-        backgroundColor: Color.fromARGB(206, 14, 14, 14),
-        child: Icon(
-          Icons.person,
-          size: 40,
+          {required String name, required String email, required String img}) =>
+      UserAccountsDrawerHeader(
+        decoration: BoxDecoration(color: Colors.white10),
+        arrowColor: textColor,
+        accountEmail: Text(name),
+        accountName: Text(email),
+        currentAccountPicture: CircleAvatar(
+          radius: 30,
+          child: Icon(
+            Icons.person,
+            size: 40,
+          ),
         ),
-      ),
-      onDetailsPressed: () {},
-      otherAccountsPictures: [
-        CircleAvatar(child: Icon(Icons.person_add_alt_1_outlined))
-      ],
-    );
-  }
+        onDetailsPressed: () {},
+        otherAccountsPictures: [
+          CircleAvatar(child: Icon(Icons.person_add_alt_1_outlined))
+        ],
+      );
 }
